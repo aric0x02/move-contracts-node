@@ -7,7 +7,7 @@ use move_core_types::{
 	value::{MoveTypeLayout, MoveValue},
 };
 
-use crate::{
+use crate::api::{
 	addr,
 	info::find_script_function,
 	model::{from_str, new_func_tx, Signers},
@@ -113,7 +113,7 @@ fn prepare_function_signature(
 	}
 	let args_index = call_args.len() - params_count;
 
-	let params = crate::convert::MoveConverter::try_into_vm_values(
+	let params = crate::api::convert::MoveConverter::try_into_vm_values(
 		&code_args[signers_count..],
 		&call_args[args_index..],
 	)?;
@@ -135,7 +135,7 @@ pub fn pontem_parse_address(addr: &str) -> Result<AccountAddress> {
 		// first try ss58 parsing
 		use sp_core::crypto::Ss58Codec;
 		let signer = sp_core::sr25519::Public::from_ss58check_with_version(addr).unwrap().0;
-		let address = crate::addr::account_to_account_address(&signer);
+		let address = crate::api::addr::account_to_account_address(&signer);
 		Ok(address)
 	} else {
 		let addr = addr.to_string();

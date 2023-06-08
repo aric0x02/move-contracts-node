@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 use anyhow::{anyhow, bail, ensure, format_err, Context, Result};
-use crate::move_types::{HexEncodedBytes, MoveResource, MoveStructTag, MoveType, MoveValue};
+use super::move_types::{HexEncodedBytes, MoveResource, MoveStructTag, MoveType, MoveValue};
 use core::str::FromStr;
 use move_binary_format::{layout::GetModule, CompiledModule};
 use move_core_types::{
@@ -194,7 +194,7 @@ impl MoveConverter {
 			// MoveTypeLayout::U256 =>
 			// serde_json::from_value::<crate::move_types::U128>(val)?.into(),
 			MoveTypeLayout::Address =>
-				serde_json::from_value::<crate::address::Address>(val)?.into(),
+				serde_json::from_value::<crate::api::address::Address>(val)?.into(),
 			MoveTypeLayout::Vector(item_layout) =>
 				Self::try_into_vm_value_vector(item_layout.as_ref(), val)?,
 			MoveTypeLayout::Struct(struct_layout) =>

@@ -14,7 +14,7 @@ use move_binary_format::{
 };
 use move_core_types::{account_address::AccountAddress, identifier::IdentStr};
 
-use crate::move_types::{
+use super::move_types::{
 	MoveAbility, MoveFunction, MoveFunctionGenericTypeParam, MoveStruct, MoveStructField,
 	MoveStructGenericTypeParam, MoveStructTag, MoveType,
 };

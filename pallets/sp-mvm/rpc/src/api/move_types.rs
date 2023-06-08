@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // #![cfg_attr(not(feature = "std"), no_std)]
-use crate::{
+use crate::api::{
 	address::Address,
 	bytecode::*,
 	wrappers::{IdentifierWrapper, VerifyInput, VerifyInputWithRecursion},
@@ -274,7 +274,7 @@ impl TryFrom<AnnotatedMoveValue> for MoveValue {
 			// AnnotatedMoveValue::U16(v) => MoveValue::U16(v),
 			// AnnotatedMoveValue::U32(v) => MoveValue::U32(v),
 			AnnotatedMoveValue::U64(v) => MoveValue::U64(v),
-			AnnotatedMoveValue::U128(v) => MoveValue::U128(crate::move_types::U128(v)),
+			AnnotatedMoveValue::U128(v) => MoveValue::U128(crate::api::move_types::U128(v)),
 			// AnnotatedMoveValue::U256(v) => MoveValue::U256(U256(v)),
 			AnnotatedMoveValue::Bool(v) => MoveValue::Bool(v),
 			AnnotatedMoveValue::Address(v) => MoveValue::Address(v.into()),
@@ -299,7 +299,7 @@ impl From<TransactionArgument> for MoveValue {
 			// TransactionArgument::U16(v) => MoveValue::U16(v),
 			// TransactionArgument::U32(v) => MoveValue::U32(v),
 			TransactionArgument::U64(v) => MoveValue::U64(v),
-			TransactionArgument::U128(v) => MoveValue::U128(crate::move_types::U128(v)),
+			TransactionArgument::U128(v) => MoveValue::U128(crate::api::move_types::U128(v)),
 			// TransactionArgument::U256(v) => MoveValue::U256(U256(v)),
 			TransactionArgument::Bool(v) => MoveValue::Bool(v),
 			TransactionArgument::Address(v) => MoveValue::Address(v.into()),

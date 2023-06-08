@@ -5,7 +5,7 @@ use move_binary_format::{
 	CompiledModule,
 };
 use move_core_types::{account_address::AccountAddress, value::MoveTypeLayout};
-use crate::constant::sig_to_ty;
+use super::constant::sig_to_ty;
 
 #[derive(Debug)]
 pub struct BytecodeInfo {

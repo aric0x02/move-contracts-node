@@ -1,7 +1,5 @@
 use codec::{self, Codec};
 use std::{convert::From, sync::Arc};
-// use jsonrpc_core::{Error as JsonRpseeError, ErrorCode, Result};
-// use jsonrpc_derive::rpc;
 use jsonrpsee::{
 	core::{Error as JsonRpseeError, RpcResult as Result},
 	proc_macros::rpc,
@@ -15,21 +13,20 @@ use sp_runtime::{generic::BlockId, traits::Block as BlockT};
 // use frame_support::weights::Weight;
 use fc_rpc_core::types::Bytes;
 use serde::{Deserialize, Serialize};
-pub mod addr;
-pub mod address;
-pub mod bytecode;
-pub mod constant;
-pub mod convert;
-pub mod fn_call;
-pub mod info;
-pub mod model;
-pub mod move_types;
-pub mod wrappers;
-pub mod api_state_view;
-use crate::api_state_view::ApiStateView;
-pub use crate::move_types::MoveModuleBytecode;
-
-
+pub mod api;
+// pub mod api::addr;
+// pub mod api::address;
+// pub mod api::bytecode;
+// pub mod api::constant;
+// pub mod api::convert;
+// pub mod api::fn_call;
+// pub mod api::info;
+// pub mod api::model;
+// pub mod api::move_types;
+// pub mod api::wrappers;
+// pub mod api::api_state_view;
+use crate::api::api_state_view::ApiStateView;
+pub use crate::api::move_types::MoveModuleBytecode;
 // pub struct ApiStateView<C, BlockHash, AccountId, Block> {
 // 	client: Arc<C>,
 // 	account_id: AccountId,
@@ -349,7 +346,7 @@ where
 			.map(|func| String::from_utf8(func.into_vec()).unwrap())
 			.collect::<Vec<String>>();
 		let ((module_id, module_address), module_name, func) = (
-			crate::fn_call::parse_function_string(&ff[0], &ff[1]).unwrap(),
+			crate::api::fn_call::parse_function_string(&ff[0], &ff[1]).unwrap(),
 			ff[1].clone(),
 			ff[2].clone(),
 		);
@@ -357,7 +354,7 @@ where
 			.get_module(&at, module_id.unwrap())
 			.map_err(runtime_error_into_rpc_err4)?
 			.map_err(runtime_error_into_rpc_err4)?;
-		let f = crate::fn_call::make_function_call(
+		let f = crate::api::fn_call::make_function_call(
 			&f.as_ref().unwrap(),
 			module_address,
 			module_name,
@@ -393,7 +390,7 @@ where
         if f.is_none(){
             return Err(runtime_error_into_rpc_err7())
         }
-		let f = crate::fn_call::make_abi(&f.as_ref().unwrap())
+		let f = crate::api::fn_call::make_abi(&f.as_ref().unwrap())
 			.map_err(runtime_error_into_rpc_err4)
 			.ok();
         if f.is_none(){
@@ -502,7 +499,7 @@ where
 		let att = BlockId::hash(at.unwrap_or_else(||
 			// If the block hash is not supplied assume the best block.
 			self.client.info().best_hash));
-		let (tag_bcs, tag, _module_id) = convert::parse_struct_tag_string3(tag.into_vec()).map_err(runtime_error_into_rpc_err4)?;
+		let (tag_bcs, tag, _module_id) = api::convert::parse_struct_tag_string3(tag.into_vec()).map_err(runtime_error_into_rpc_err4)?;
 
 		let f: Option<Vec<u8>> = api
 			.get_resource(&att, account_id.clone(), tag_bcs)
@@ -513,7 +510,7 @@ where
         }
 		let view = ApiStateView::new(self.client.clone(), account_id.clone(), at);
 		let annotator = move_resource_viewer::MoveValueAnnotator::new(&view);
-		use crate::move_types::MoveResource;
+		use crate::api::move_types::MoveResource;
 		let f: MoveResource = annotator
 			.view_resource(&tag, &f.unwrap())
 			.and_then(|result| {
@@ -538,7 +535,7 @@ where
 			// If the block hash is not supplied assume the best block.
 			self.client.info().best_hash));
 		let (_tag_bcs, tag, module_id) =
-			convert::parse_struct_tag_string3(value_type.clone().into_vec()).map_err(runtime_error_into_rpc_err4)?;
+			api::convert::parse_struct_tag_string3(value_type.clone().into_vec()).map_err(runtime_error_into_rpc_err4)?;
 		let module: Option<Vec<u8>> = api
 			.get_module(&at, module_id)
 			.map_err(runtime_error_into_rpc_err4)?
@@ -546,7 +543,7 @@ where
         if module.is_none(){
             return Err(runtime_error_into_rpc_err7())
         }
-		let raw_key = convert::table_item_key(key_type.into_vec(), key.into_vec(), module.clone().unwrap())
+		let raw_key = api::convert::table_item_key(key_type.into_vec(), key.into_vec(), module.clone().unwrap())
 			.map_err(runtime_error_into_rpc_err5)?;
 		let handle = std::str::from_utf8(&handle.into_vec()).unwrap().parse::<u128>().map_err(runtime_error_into_rpc_err5)?;
 		let f: Option<Vec<u8>> = api
@@ -554,7 +551,7 @@ where
 			.map_err(runtime_error_into_rpc_err4)?
 			.map_err(runtime_error_into_rpc_err5)?;
 		let f: Option<Vec<u8>> =
-			convert::table_item_value_bytes(tag, f.unwrap_or(vec![]),module.unwrap())?;
+			api::convert::table_item_value_bytes(tag, f.unwrap_or(vec![]),module.unwrap())?;
 		Ok(f.map(Into::into))
 	}
 }
