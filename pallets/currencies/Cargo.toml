@@ -17,8 +17,8 @@ frame-support = { git = "https://github.com/paritytech/substrate", branch = "pol
 frame-system = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.37", default-features = false }
 
 # Orml dependencies
-orml-traits = { default-features = false, git = 'https://github.com/open-web3-stack/open-runtime-module-library' }
-orml-utilities = { default-features = false, git = 'https://github.com/open-web3-stack/open-runtime-module-library' }
+orml-traits = { default-features = false, git = 'https://github.com/open-web3-stack/open-runtime-module-library',rev='dbf86dc770eac34c550933759e9e2cfd9367de36' }
+orml-utilities = { default-features = false, git = 'https://github.com/open-web3-stack/open-runtime-module-library',rev='dbf86dc770eac34c550933759e9e2cfd9367de36' }
 
 # Local dependencies
 primitives = { default-features = false, path = "../sp-mvm/primitives" }
@@ -27,7 +27,7 @@ primitives = { default-features = false, path = "../sp-mvm/primitives" }
 sp-core = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.37" }
 pallet-balances = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.37" }
 pallet-timestamp = { git = "https://github.com/paritytech/substrate", branch = "polkadot-v0.9.37" }
-orml-tokens = { default-features = false, git = 'https://github.com/open-web3-stack/open-runtime-module-library' }
+orml-tokens = { default-features = false, git = 'https://github.com/open-web3-stack/open-runtime-module-library',rev='dbf86dc770eac34c550933759e9e2cfd9367de36' }
 
 [features]
 default = ["std"]

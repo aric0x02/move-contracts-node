@@ -43,28 +43,33 @@ sp-core = { default-features = false, git = 'https://github.com/paritytech/subst
 # package = "parity-scale-codec-derive"
 
 [dependencies.move-core-types]
-path="../../../../sp-move-vm/language/move-core/types"
+# path="../../../../sp-move-vm/language/move-core/types"
+git = "https://github.com/aric0x02/sp-move-vm.git"
+branch = "release-0.2.0"
 default-features = false
 
 [dependencies.bcs-alt]
 package = "bcs"
 default-features = false
-path="../../../../sp-move-vm/bcs"
-
+# path="../../../../sp-move-vm/bcs"
+git = "https://github.com/aric0x02/sp-move-vm.git"
+branch = "release-0.2.0"
 [dependencies.move-vm]
 package = "mvm"
-path="../../../../sp-move-vm/mvm"
+# path="../../../../sp-move-vm/mvm"
+git = "https://github.com/aric0x02/sp-move-vm.git"
+branch = "release-0.2.0"
 default-features = false
 features = [ "move_stdlib" ]
 
-# [dependencies.move-core-types]
-# path="../../../sp-move-vm/language/move-core/types"
-# default-features = false
-
 [dependencies.move-binary-format]
-path="../../../../sp-move-vm/language/move-binary-format"
+# path="../../../../sp-move-vm/language/move-binary-format"
+git = "https://github.com/aric0x02/sp-move-vm.git"
+branch = "release-0.2.0"
 default-features = false
 
 [dependencies.move-resource-viewer]
-path="../../../../sp-move-vm/language/tools/move-resource-viewer"
+# path="../../../../sp-move-vm/language/tools/move-resource-viewer"
+git = "https://github.com/aric0x02/sp-move-vm.git"
+branch = "release-0.2.0"
 default-features = false

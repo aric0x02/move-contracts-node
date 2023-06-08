@@ -3,5 +3,5 @@ name = "benchmark_assets"
 
 
 dependencies = [
-    { git = "https://github.com/pontem-network/pont-stdlib.git", rev = "e9bd26720c06705d2e222833a496fda7c67c8e32" }
+    { git = "https://github.com/aric0x02/pont-stdlib.git", rev = "release-v1.0.1" }
 ]

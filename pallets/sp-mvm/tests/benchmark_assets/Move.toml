@@ -13,9 +13,9 @@ Alice = "gkQ5K6EnLRgZkwozG8GiBAEnJyM6FxzbSaSmVhKJ2w8FcK7ih"
 Bob = "gkNW9pAcCHxZrnoVkhLkEQtsLsW5NWTC75cdAdxAMs9LNYCYg"
 
 [dependencies.PontStdlib]
-git = "https://github.com/pontem-network/pont-stdlib.git"
-rev = "release-v1.0.0"
+git = "https://github.com/aric0x02/pont-stdlib.git"
+rev = "release-v1.0.1"
 
 [dependencies.MoveStdlib]
-git = "https://github.com/pontem-network/move-stdlib.git"
-rev = "release-v1.0.0"
+git = "https://github.com/aric0x02/move-stdlib.git"
+rev = "release-v1.0.1"

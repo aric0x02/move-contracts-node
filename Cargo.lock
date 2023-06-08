@@ -478,6 +478,7 @@ checksum = "b645a089122eccb6111b4f81cbc1a49f5900ac4666bb93ac027feaecf15607bf"
 [[package]]
 name = "bcs"
 version = "0.1.3"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
 ]
@@ -504,10 +505,12 @@ dependencies = [
 [[package]]
 name = "better_any"
 version = "0.2.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 
 [[package]]
 name = "better_typeid_derive"
 version = "0.1.1"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -676,6 +679,7 @@ checksum = "8d696c370c750c948ada61c69a0ee2cbbb9c50b1019ddb86d9317157a99c2cae"
 [[package]]
 name = "borrow-graph"
 version = "0.0.1"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "mirai-annotations",
 ]
@@ -726,6 +730,7 @@ checksum = "e3b5ca7a04898ad4bcd41c90c5285445ff5b791899bb1b0abdd2a2aa791211d7"
 [[package]]
 name = "bytecode-verifier"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "anyhow",
  "borrow-graph",
@@ -813,6 +818,7 @@ dependencies = [
 [[package]]
 name = "cell"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "once_cell",
 ]
@@ -1555,6 +1561,7 @@ dependencies = [
 [[package]]
 name = "diem-crypto"
 version = "0.0.2"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "anyhow",
@@ -1576,6 +1583,7 @@ dependencies = [
 [[package]]
 name = "diem-crypto-derive"
 version = "0.0.2"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1585,6 +1593,7 @@ dependencies = [
 [[package]]
 name = "diem-nibble"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
 ]
@@ -1592,6 +1601,7 @@ dependencies = [
 [[package]]
 name = "diem-types"
 version = "0.0.2"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "anyhow",
@@ -4344,6 +4354,7 @@ dependencies = [
 [[package]]
 name = "mirai-annotations"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 
 [[package]]
 name = "mockall"
@@ -4396,6 +4407,7 @@ dependencies = [
 [[package]]
 name = "move-binary-format"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "anyhow",
  "cell",
@@ -4409,6 +4421,7 @@ dependencies = [
 [[package]]
 name = "move-bytecode-utils"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "anyhow",
@@ -4462,6 +4475,7 @@ dependencies = [
  "sp-mvm-rpc-runtime",
  "sp-runtime",
  "sp-timestamp",
+ "stdlib-fetch",
  "substrate-build-script-utils",
  "substrate-frame-rpc-system",
  "try-runtime-cli",
@@ -4513,6 +4527,7 @@ dependencies = [
 [[package]]
 name = "move-core-types"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "anyhow",
@@ -4530,6 +4545,7 @@ dependencies = [
 [[package]]
 name = "move-resource-viewer"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "anyhow",
@@ -4546,6 +4562,7 @@ dependencies = [
 [[package]]
 name = "move-stdlib"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "diem-crypto",
  "move-binary-format",
@@ -4561,6 +4578,7 @@ dependencies = [
 [[package]]
 name = "move-table-extension"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "anyhow",
  "bcs 0.1.3",
@@ -4579,6 +4597,7 @@ dependencies = [
 [[package]]
 name = "move-vm-runtime"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "anyhow",
  "better_any",
@@ -4601,6 +4620,7 @@ dependencies = [
 [[package]]
 name = "move-vm-types"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "bcs 0.1.3",
@@ -4727,6 +4747,7 @@ dependencies = [
 [[package]]
 name = "mvm"
 version = "0.1.3"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
 dependencies = [
  "alt_serde",
  "anyhow",
@@ -5028,7 +5049,7 @@ checksum = "ff011a302c396a5197692431fc1948019154afc178baf7d8e37367442a4601cf"
 [[package]]
 name = "orml-currencies"
 version = "0.4.1-dev"
-source = "git+https://github.com/open-web3-stack/open-runtime-module-library#dbf86dc770eac34c550933759e9e2cfd9367de36"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=dbf86dc770eac34c550933759e9e2cfd9367de36#dbf86dc770eac34c550933759e9e2cfd9367de36"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -5044,7 +5065,7 @@ dependencies = [
 [[package]]
 name = "orml-tokens"
 version = "0.4.1-dev"
-source = "git+https://github.com/open-web3-stack/open-runtime-module-library#dbf86dc770eac34c550933759e9e2cfd9367de36"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=dbf86dc770eac34c550933759e9e2cfd9367de36#dbf86dc770eac34c550933759e9e2cfd9367de36"
 dependencies = [
  "frame-support",
  "frame-system",
@@ -5059,7 +5080,7 @@ dependencies = [
 [[package]]
 name = "orml-traits"
 version = "0.4.1-dev"
-source = "git+https://github.com/open-web3-stack/open-runtime-module-library#dbf86dc770eac34c550933759e9e2cfd9367de36"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=dbf86dc770eac34c550933759e9e2cfd9367de36#dbf86dc770eac34c550933759e9e2cfd9367de36"
 dependencies = [
  "frame-support",
  "impl-trait-for-tuples",
@@ -5077,7 +5098,7 @@ dependencies = [
 [[package]]
 name = "orml-utilities"
 version = "0.4.1-dev"
-source = "git+https://github.com/open-web3-stack/open-runtime-module-library#dbf86dc770eac34c550933759e9e2cfd9367de36"
+source = "git+https://github.com/open-web3-stack/open-runtime-module-library?rev=dbf86dc770eac34c550933759e9e2cfd9367de36#dbf86dc770eac34c550933759e9e2cfd9367de36"
 dependencies = [
  "frame-support",
  "parity-scale-codec 3.4.0",
@@ -8676,6 +8697,14 @@ dependencies = [
 [[package]]
 name = "stdlib"
 version = "0.1.0"
+source = "git+https://github.com/aric0x02/sp-move-vm.git?branch=release-0.2.0#3031a329a67219f760da8fb1a58d1e0aa9159e8f"
+
+[[package]]
+name = "stdlib-fetch"
+version = "1.0.0"
+dependencies = [
+ "anyhow",
+]
 
 [[package]]
 name = "strsim"

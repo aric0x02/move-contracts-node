@@ -1,7 +1,7 @@
 # Clone move-stdlib
-# rm -rf ./move-stdlib
+rm -rf ./move-stdlib
 # git clone https://github.com/pontem-network/move-stdlib ./move-stdlib
-# git clone -b release-v1.0.0 --single-branch https://github.com/pontem-network/move-stdlib.git
+git clone -b release-v1.0.1 --single-branch https://github.com/aric0x02/move-stdlib.git
 pushd ./move-stdlib
 # git checkout release-v1.0.0
 
@@ -9,9 +9,9 @@ dove deploy
 popd
 
 # Clone pont-stdlib
-# rm -rf ./pont-stdlib
+rm -rf ./pont-stdlib
 # git clone https://github.com/pontem-network/pont-stdlib.git ./pont-stdlib
-# git clone -b release-v1.0.0 --single-branch https://github.com/pontem-network/pont-stdlib.git
+git clone -b release-v1.0.1 --single-branch https://github.com/aric0x02/pont-stdlib.git
 pushd ./pont-stdlib
 # git checkout release-v1.0.0
 dove deploy
