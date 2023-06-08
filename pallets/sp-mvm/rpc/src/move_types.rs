@@ -1,7 +1,6 @@
 // Copyright (c) Aptos
 // SPDX-License-Identifier: Apache-2.0
 
-// use crate::{Address, Bytecode, IdentifierWrappers, VerifyInput, VerifyInputWithRecursion};
 // #![cfg_attr(not(feature = "std"), no_std)]
 use crate::{
 	address::Address,
@@ -9,10 +8,6 @@ use crate::{
 	wrappers::{IdentifierWrapper, VerifyInput, VerifyInputWithRecursion},
 };
 use anyhow::{bail, format_err};
-// use aptos_types::{account_config::CORE_CODE_ADDRESS, event::EventKey, transaction::Module};
-// use move_core_types::language_storage::CORE_CODE_ADDRESS;
-//  use scale_info::prelude::string::String;
-// use sp_std::vec::Vec;
 use move_binary_format::{
 	access::ModuleAccess,
 	file_format::{
@@ -27,16 +22,10 @@ use move_core_types::{
 	transaction_argument::TransactionArgument,
 };
 use move_resource_viewer::{AnnotatedMoveStruct, AnnotatedMoveValue};
-// use std::collections::BTreeMap;
-
-// use poem_openapi::{types::Type, Enum, Object, Union};
-// extern crate serde_alt as serde;
 use core::str::FromStr;
 use serde::{de::Error as _, Deserialize, Deserializer, Serialize, Serializer};
 use std::{
 	collections::BTreeMap,
-	// prelude::*,
-	// collections::btree_map::BTreeMap,
 	convert::{From, Into, TryFrom, TryInto},
 	fmt,
 	fmt::Display,
@@ -47,7 +36,6 @@ use std::{
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MoveResource {
 	#[serde(rename = "type")]
-	// #[oai(rename = "type")]
 	pub typ: MoveStructTag,
 	pub data: MoveStructValue,
 }
@@ -223,14 +211,7 @@ impl TryFrom<AnnotatedMoveStruct> for MoveStructValue {
 	fn try_from(s: AnnotatedMoveStruct) -> anyhow::Result<Self> {
 		let mut map = BTreeMap::new();
 		for (id, val) in s.value {
-            match MoveValue::try_from(val.clone()).expect(&format!("id={:?},val=={:?}",id,val)).json(){
-                Ok(_json)=>{map.insert(id.clone().into(), MoveValue::try_from(val.clone()).expect(&format!("id={:?},val=={:?}",id,val)).json().expect(&format!("json==={:?}==id={:?},val=={:?}",_json,id,val)));
-            }
-            Err(err)=>{
-                    println!("==MoveValue::try_from====={:?}======={:?}=========={:?}",MoveValue::try_from(val.clone()),val,err);   
-            }
-            }
-			
+            map.insert(id.into(), MoveValue::try_from(val)?.json()?);
 		}
 		Ok(Self(map))
 	}

@@ -159,12 +159,12 @@ pub trait MVMApiRpc<BlockHash, AccountId> {
 	#[method(name = "mvm_getModuleABIs")]
 	fn get_module_abis(&self, module_id: Bytes, at: Option<BlockHash>) -> Result<Option<Bytes>>;
 
-	#[method(name = "mvm_getModuleABIs2")]
-	fn get_module_abis2(
-		&self,
-		module_id: Bytes,
-		at: Option<BlockHash>,
-	) -> Result<Option<MoveModuleBytecode>>;
+	// #[method(name = "mvm_getModuleABIs2")]
+	// fn get_module_abis2(
+	// 	&self,
+	// 	module_id: Bytes,
+	// 	at: Option<BlockHash>,
+	// ) -> Result<Option<MoveModuleBytecode>>;
 
 	#[method(name = "mvm_getResources")]
 	fn get_resources(
@@ -173,20 +173,20 @@ pub trait MVMApiRpc<BlockHash, AccountId> {
 		tag: Bytes,
 		at: Option<BlockHash>,
 	) -> Result<Option<Bytes>>;
-	#[method(name = "mvm_getResources2")]
-	fn get_resources2(
-		&self,
-		account_id: AccountId,
-		tag: Bytes,
-		at: Option<BlockHash>,
-	) -> Result<Option<Bytes>>;
-	#[method(name = "mvm_getResources3")]
-	fn get_resources3(
-		&self,
-		account_id: AccountId,
-		tag: Bytes,
-		at: Option<BlockHash>,
-	) -> Result<Option<Bytes>>;
+	// #[method(name = "mvm_getResources2")]
+	// fn get_resources2(
+	// 	&self,
+	// 	account_id: AccountId,
+	// 	tag: Bytes,
+	// 	at: Option<BlockHash>,
+	// ) -> Result<Option<Bytes>>;
+	// #[method(name = "mvm_getResources3")]
+	// fn get_resources3(
+	// 	&self,
+	// 	account_id: AccountId,
+	// 	tag: Bytes,
+	// 	at: Option<BlockHash>,
+	// ) -> Result<Option<Bytes>>;
 
 	#[method(name = "mvm_getTableEntry")]
 	fn get_table_entry(
@@ -353,12 +353,10 @@ where
 			ff[1].clone(),
 			ff[2].clone(),
 		);
-		println!("{:?},{:?},{:?},{:?},{:?}", module_id, module_address, ff[0], module_name, func);
 		let f: Option<Vec<u8>> = api
 			.get_module(&at, module_id.unwrap())
 			.map_err(runtime_error_into_rpc_err4)?
 			.map_err(runtime_error_into_rpc_err4)?;
-		println!("make_function_call====");
 		let f = crate::fn_call::make_function_call(
 			&f.as_ref().unwrap(),
 			module_address,
@@ -375,18 +373,6 @@ where
 		)
 		.map_err(runtime_error_into_rpc_err4)
 		.ok();
-		println!("make_function_call=result==={:?}===", f);
-		//   MoveModuleBytecode::new(module.clone())
-		//                             .try_parse_abi()
-		//                             .context("Failed to parse move module ABI")
-		//                             .map_err(|err| {
-		//                                 BasicErrorWith404::internal_with_code(
-		//                                     err,
-		//                                     AptosErrorCode::InternalError,
-		//                                     &self.latest_ledger_info,
-		//                                 )
-		//                             })?,
-
 		Ok(f.map(Into::into))
 	}
 
@@ -413,106 +399,100 @@ where
         if f.is_none(){
             return Err(runtime_error_into_rpc_err7())
         }
-		let ff = serde_json::to_vec(&f.as_ref().unwrap()).ok();
-		println!("test_get_module_abis=result==={:?}=={:?}=", f, ff);
-		// let f:Option<Vec<u8>>=Some(ff.bytes().collect());
-		let f = ff;
+		let f = serde_json::to_vec(&f.as_ref().unwrap()).ok();
 		Ok(f.map(Into::into))
 	}
 
-	fn get_module_abis2(
-		&self,
-		module_id: Bytes,
-		at: Option<<Block as BlockT>::Hash>,
-	) -> Result<Option<MoveModuleBytecode>> {
-		let api = self.client.runtime_api();
-		let at = BlockId::hash(at.unwrap_or_else(||
-			// If the block hash is not supplied assume the best block.
-			self.client.info().best_hash));
+	// fn get_module_abis(
+	// 	&self,
+	// 	module_id: Bytes,
+	// 	at: Option<<Block as BlockT>::Hash>,
+	// ) -> Result<Option<MoveModuleBytecode>> {
+	// 	let api = self.client.runtime_api();
+	// 	let at = BlockId::hash(at.unwrap_or_else(||
+	// 		// If the block hash is not supplied assume the best block.
+	// 		self.client.info().best_hash));
 
-		let f: Option<Vec<u8>> = api
-			.get_module(&at, module_id.into_vec())
-			.map_err(runtime_error_into_rpc_err4)?
-			.map_err(runtime_error_into_rpc_err4)?;
-		let f = crate::fn_call::make_abi(&f.as_ref().unwrap())
-			.map_err(runtime_error_into_rpc_err4)
-			.ok();
-		// let ff=serde_json::to_vec(&f.as_ref().unwrap()).ok();
-		println!("test_get_module_abis2=result==={:?}===", f);
-		// let f:Option<Vec<u8>>=Some(ff.bytes().collect());
-		Ok(f.map(Into::into))
-	}
+	// 	let f: Option<Vec<u8>> = api
+	// 		.get_module(&at, module_id.into_vec())
+	// 		.map_err(runtime_error_into_rpc_err4)?
+	// 		.map_err(runtime_error_into_rpc_err4)?;
+	// 	let f = crate::fn_call::make_abi(&f.as_ref().unwrap())
+	// 		.map_err(runtime_error_into_rpc_err4)
+	// 		.ok();
+	// 	Ok(f.map(Into::into))
+	// }
+
+	// fn get_resources(
+	// 	&self,
+	// 	account_id: AccountId,
+	// 	tag: Bytes,
+	// 	at: Option<<Block as BlockT>::Hash>,
+	// ) -> Result<Option<Bytes>> {
+	// 	let api = self.client.runtime_api();
+	// 	let at = BlockId::hash(at.unwrap_or_else(||
+	// 		// If the block hash is not supplied assume the best block.
+	// 		self.client.info().best_hash));
+	// 	let (tag_bcs, tag, module_id) = convert::parse_struct_tag_string(tag.into_vec()).unwrap();
+	// 	let f: Option<Vec<u8>> = api
+	// 		.get_resource(&at, account_id, tag_bcs)
+	// 		.map_err(runtime_error_into_rpc_err4)?
+	// 		.map_err(runtime_error_into_rpc_err5)?;
+	// 	let module: Option<Vec<u8>> = api
+	// 		.get_module(&at, module_id)
+	// 		.map_err(runtime_error_into_rpc_err4)?
+	// 		.map_err(runtime_error_into_rpc_err5)?;
+	// 	let f = convert::struct_to_json(&tag, f.unwrap(), module.unwrap())
+	// 		.map_err(runtime_error_into_rpc_err4)
+	// 		.map_err(runtime_error_into_rpc_err6)?;
+	// 	let ff = serde_json::to_vec(&f).ok();
+	// 	println!("get_resources=result==={:?}=={:?}=", f, ff);
+	// 	let f = ff;
+	// 	Ok(f.map(Into::into))
+	// }
+
+	// fn get_resources2(
+	// 	&self,
+	// 	account_id: AccountId,
+	// 	tag: Bytes,
+	// 	at: Option<<Block as BlockT>::Hash>,
+	// ) -> Result<Option<Bytes>> {
+	// 	let api = self.client.runtime_api();
+	// 	let att = BlockId::hash(at.unwrap_or_else(||
+	// 		// If the block hash is not supplied assume the best block.
+	// 		self.client.info().best_hash));
+	// 	let (tag_bcs, tag, _module_id) = convert::parse_struct_tag_string(tag.into_vec()).unwrap();
+
+	// 	let f: Option<Vec<u8>> = api
+	// 		.get_resource(&att, account_id.clone(), tag_bcs)
+	// 		.map_err(runtime_error_into_rpc_err4)?
+	// 		.map_err(runtime_error_into_rpc_err5)?;
+	// 	let view = ApiStateView::new(self.client.clone(), account_id.clone(), at);
+	// 	// use move_resource_viewer::MoveValueAnnotator;
+	// 	let annotator = move_resource_viewer::MoveValueAnnotator::new(&view);
+	// 	use crate::move_types::MoveResource;
+
+	// 	let f: MoveResource = annotator
+	// 		.view_resource(&tag, &f.unwrap())
+	// 		.and_then(|result| {
+	// 			println!("=get_resources2===={:?}", result);
+	// 			result.try_into()
+	// 		})
+	// 		.map_err(runtime_error_into_rpc_err5)?;
+
+	// 	//  let module: Option<Vec<u8>> = api
+	// 	//         .get_module(&at, module_id)
+	// 	//         .map_err(runtime_error_into_rpc_err4)?
+	// 	//         .map_err(runtime_error_into_rpc_err5)?;
+	// 	// let f = convert::struct_to_json(&tag,f.unwrap(),module.unwrap()).
+	// 	// map_err(runtime_error_into_rpc_err4).map_err(runtime_error_into_rpc_err6)?;
+	// 	let ff = serde_json::to_vec(&f).ok();
+	// 	println!("get_resources2=result==={:?}=={:?}=", f, ff);
+	// 	let f = ff;
+	// 	Ok(f.map(Into::into))
+	// }
 
 	fn get_resources(
-		&self,
-		account_id: AccountId,
-		tag: Bytes,
-		at: Option<<Block as BlockT>::Hash>,
-	) -> Result<Option<Bytes>> {
-		let api = self.client.runtime_api();
-		let at = BlockId::hash(at.unwrap_or_else(||
-			// If the block hash is not supplied assume the best block.
-			self.client.info().best_hash));
-		let (tag_bcs, tag, module_id) = convert::parse_struct_tag_string(tag.into_vec()).unwrap();
-		let f: Option<Vec<u8>> = api
-			.get_resource(&at, account_id, tag_bcs)
-			.map_err(runtime_error_into_rpc_err4)?
-			.map_err(runtime_error_into_rpc_err5)?;
-		let module: Option<Vec<u8>> = api
-			.get_module(&at, module_id)
-			.map_err(runtime_error_into_rpc_err4)?
-			.map_err(runtime_error_into_rpc_err5)?;
-		let f = convert::struct_to_json(&tag, f.unwrap(), module.unwrap())
-			.map_err(runtime_error_into_rpc_err4)
-			.map_err(runtime_error_into_rpc_err6)?;
-		let ff = serde_json::to_vec(&f).ok();
-		println!("get_resources=result==={:?}=={:?}=", f, ff);
-		let f = ff;
-		Ok(f.map(Into::into))
-	}
-
-	fn get_resources2(
-		&self,
-		account_id: AccountId,
-		tag: Bytes,
-		at: Option<<Block as BlockT>::Hash>,
-	) -> Result<Option<Bytes>> {
-		let api = self.client.runtime_api();
-		let att = BlockId::hash(at.unwrap_or_else(||
-			// If the block hash is not supplied assume the best block.
-			self.client.info().best_hash));
-		let (tag_bcs, tag, _module_id) = convert::parse_struct_tag_string(tag.into_vec()).unwrap();
-
-		let f: Option<Vec<u8>> = api
-			.get_resource(&att, account_id.clone(), tag_bcs)
-			.map_err(runtime_error_into_rpc_err4)?
-			.map_err(runtime_error_into_rpc_err5)?;
-		let view = ApiStateView::new(self.client.clone(), account_id.clone(), at);
-		// use move_resource_viewer::MoveValueAnnotator;
-		let annotator = move_resource_viewer::MoveValueAnnotator::new(&view);
-		use crate::move_types::MoveResource;
-
-		let f: MoveResource = annotator
-			.view_resource(&tag, &f.unwrap())
-			.and_then(|result| {
-				println!("=get_resources2===={:?}", result);
-				result.try_into()
-			})
-			.map_err(runtime_error_into_rpc_err5)?;
-
-		//  let module: Option<Vec<u8>> = api
-		//         .get_module(&at, module_id)
-		//         .map_err(runtime_error_into_rpc_err4)?
-		//         .map_err(runtime_error_into_rpc_err5)?;
-		// let f = convert::struct_to_json(&tag,f.unwrap(),module.unwrap()).
-		// map_err(runtime_error_into_rpc_err4).map_err(runtime_error_into_rpc_err6)?;
-		let ff = serde_json::to_vec(&f).ok();
-		println!("get_resources2=result==={:?}=={:?}=", f, ff);
-		let f = ff;
-		Ok(f.map(Into::into))
-	}
-
-	fn get_resources3(
 		&self,
 		account_id: AccountId,
 		tag: Bytes,
@@ -532,28 +512,16 @@ where
             return Err(runtime_error_into_rpc_err7())
         }
 		let view = ApiStateView::new(self.client.clone(), account_id.clone(), at);
-		// use move_resource_viewer::MoveValueAnnotator;
 		let annotator = move_resource_viewer::MoveValueAnnotator::new(&view);
 		use crate::move_types::MoveResource;
 		let f: MoveResource = annotator
 			.view_resource(&tag, &f.unwrap())
 			.and_then(|result| {
-				println!("=get_resources3==538=={:?}", result);
 				result.try_into()
 			})
 			.map_err(runtime_error_into_rpc_err5)?;
 
-
-	 
-		//  let module: Option<Vec<u8>> = api
-		//         .get_module(&at, module_id)
-		//         .map_err(runtime_error_into_rpc_err4)?
-		//         .map_err(runtime_error_into_rpc_err5)?;
-		// let f = convert::struct_to_json(&tag,f.unwrap(),module.unwrap()).
-		// map_err(runtime_error_into_rpc_err4).map_err(runtime_error_into_rpc_err6)?;
-		let ff = serde_json::to_vec(&f).ok();
-		println!("get_resources3=result==={:?}=={:?}=", f, ff);
-		let f = ff;
+		let f = serde_json::to_vec(&f).ok();
 		Ok(f.map(Into::into))
 	}
 
@@ -569,10 +537,8 @@ where
 		let at = BlockId::hash(at.unwrap_or_else(||
 			// If the block hash is not supplied assume the best block.
 			self.client.info().best_hash));
-		println!("======567======={:?}", 1);
 		let (_tag_bcs, tag, module_id) =
 			convert::parse_struct_tag_string3(value_type.clone().into_vec()).map_err(runtime_error_into_rpc_err4)?;
-		println!("======570======={:?}", 1);
 		let module: Option<Vec<u8>> = api
 			.get_module(&at, module_id)
 			.map_err(runtime_error_into_rpc_err4)?
@@ -580,20 +546,15 @@ where
         if module.is_none(){
             return Err(runtime_error_into_rpc_err7())
         }
-		println!("======575======={:?}", 1);
 		let raw_key = convert::table_item_key(key_type.into_vec(), key.into_vec(), module.clone().unwrap())
 			.map_err(runtime_error_into_rpc_err5)?;
-		println!("======578======={:?}", raw_key);
 		let handle = std::str::from_utf8(&handle.into_vec()).unwrap().parse::<u128>().map_err(runtime_error_into_rpc_err5)?;
-		println!("=====580========{:?}", handle);
 		let f: Option<Vec<u8>> = api
 			.get_table_entry(&at, handle, raw_key)
 			.map_err(runtime_error_into_rpc_err4)?
 			.map_err(runtime_error_into_rpc_err5)?;
-		println!("======585======={:?}", f);
 		let f: Option<Vec<u8>> =
 			convert::table_item_value_bytes(tag, f.unwrap_or(vec![]),module.unwrap())?;
-		println!("======588======={:?}", f);
 		Ok(f.map(Into::into))
 	}
 }
@@ -641,14 +602,14 @@ fn runtime_error_into_rpc_err5(err: impl std::fmt::Debug) -> JsonRpseeError {
 	.into()
 }
 
-fn runtime_error_into_rpc_err6(err: impl std::fmt::Debug) -> JsonRpseeError {
-	CallError::Custom(ErrorObject::owned(
-		RUNTIME_ERROR,
-		"Error from struct tag json",
-		Some(format!("{:?}", err)),
-	))
-	.into()
-}
+// fn runtime_error_into_rpc_err6(err: impl std::fmt::Debug) -> JsonRpseeError {
+// 	CallError::Custom(ErrorObject::owned(
+// 		RUNTIME_ERROR,
+// 		"Error from struct tag json",
+// 		Some(format!("{:?}", err)),
+// 	))
+// 	.into()
+// }
 fn runtime_error_into_rpc_err7() -> JsonRpseeError {
 	CallError::Custom(ErrorObject::owned(
 		RUNTIME_ERROR,

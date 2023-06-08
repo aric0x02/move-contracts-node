@@ -1,7 +1,6 @@
 // Copyright (c) The Diem Core Contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// use crate::file_format::{Constant, SignatureToken};
 use move_binary_format::file_format::SignatureToken;
 use move_core_types::value::MoveTypeLayout;
 
@@ -35,16 +34,3 @@ pub fn ty_to_sig(ty: &MoveTypeLayout) -> Option<SignatureToken> {
 	}
 }
 
-// impl Constant {
-//     pub fn serialize_constant(ty: &MoveTypeLayout, v: &MoveValue) -> Option<Self> {
-//         Some(Self {
-//             type_: ty_to_sig(ty)?,
-//             data: v.simple_serialize()?,
-//         })
-//     }
-
-//     pub fn deserialize_constant(&self) -> Option<MoveValue> {
-//         let ty = sig_to_ty(&self.type_)?;
-//         MoveValue::simple_deserialize(&self.data, &ty).ok()
-//     }
-// }

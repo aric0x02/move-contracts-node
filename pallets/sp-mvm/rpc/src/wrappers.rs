@@ -10,19 +10,11 @@
 //! just strings, using the FromStr impl to parse the path param. They can
 //! then be unpacked to the real type beneath.
 
-// use crate::VerifyInput;
 use anyhow::bail;
-// use aptos_types::{event::EventKey, state_store::state_key::StateKey};
 use move_core_types::identifier::{IdentStr, Identifier};
-// use poem_openapi::Object;
 use serde::{de::Error as _, Deserialize, Deserializer, Serialize, Serializer};
-
 use core::{convert::From, fmt, ops::Deref, str::FromStr};
-//  use core::str::FromStr;
-//
-//  use sp_std::str::FromStr;
 
-// use crate::{Address, U64};
 /// For verifying a given struct
 pub trait VerifyInput {
 	fn verify(&self) -> anyhow::Result<()>;
@@ -112,71 +104,4 @@ impl<'de> Deserialize<'de> for IdentifierWrapper {
 		identifier.parse().map_err(D::Error::custom)
 	}
 }
-// // Unlike IdentifierWrapper, we don't use this struct as a path / query param.
-// // Instead, we define this wrapper struct for two reasons:
-// // 1. To avoid implementing Poem derives on types outside of the API crate.
-// // 2. To express the EventKey as types that already work in the API, such as
-// //    Address and U64 instead of AccountAddress and u64.
-// #[derive(Clone, Copy, Debug, Deserialize, Eq, Object, PartialEq, Serialize)]
-// pub struct EventGuid {
-//     pub creation_number: U64,
-//     pub account_address: Address,
-// }
 
-// impl From<EventKey> for EventGuid {
-//     fn from(event_key: EventKey) -> Self {
-//         Self {
-//             creation_number: U64(event_key.get_creation_number()),
-//             account_address: Address::from(event_key.get_creator_address()),
-//         }
-//     }
-// }
-
-// impl From<EventGuid> for EventKey {
-//     fn from(event_key_wrapper: EventGuid) -> EventKey {
-//         EventKey::new(
-//             event_key_wrapper.creation_number.0,
-//             event_key_wrapper.account_address.into(),
-//         )
-//     }
-// }
-
-// /// This wraps the StateKey, serializing it as hex encoded bytes.
-// #[derive(Debug, Serialize, Deserialize)]
-// pub struct StateKeyWrapper(pub StateKey);
-
-// impl fmt::Display for StateKeyWrapper {
-//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-//         let hex_string = hex::encode(
-//             &self
-//                 .0
-//                 .encode()
-//                 .context("Failed to encode StateKey")
-//                 .map_err(|_| fmt::Error)?,
-//         );
-//         write!(f, "{}", hex_string)
-//     }
-// }
-
-// impl FromStr for StateKeyWrapper {
-//     type Err = anyhow::Error;
-
-//     fn from_str(s: &str) -> anyhow::Result<Self, anyhow::Error> {
-//         let state_key_prefix: StateKey =
-//             StateKey::decode(&hex::decode(s).context("Failed to decode StateKey as hex string")?)
-//                 .context("Failed to decode StateKey from hex string")?;
-//         Ok(StateKeyWrapper(state_key_prefix))
-//     }
-// }
-
-// impl From<StateKey> for StateKeyWrapper {
-//     fn from(value: StateKey) -> StateKeyWrapper {
-//         Self(value)
-//     }
-// }
-
-// impl From<StateKeyWrapper> for StateKey {
-//     fn from(value: StateKeyWrapper) -> StateKey {
-//         value.0
-//     }
-// }
